@@ -1,4 +1,6 @@
 <?php
+  require("connection.php");
+
   // The global $_POST variable allows you to access the data sent with the POST method by name
   // To access the data sent with the GET method, you can use $_GET
   $username = htmlspecialchars($_POST['username']);
@@ -6,7 +8,7 @@
 
   // Comprueba que el nombre de usuario contenga unicamente numeros, letras minusculas, guiones medios y guiones bajos
   if (!preg_match("/^[0-9a-z-_]{4,8}$/", $username)) {
-    exit("Se permiten unicamente numeros, letras minusculas sin tildes ni dieresis, guiones medios y guiones bajos. El nombre de usuario tiene que contener entre 4 y 8 de los caracteres permitidos.");
+    exit("Se permiten unicamente numeros, letras minusculas sin tildes ni dieresis, guiones y guiones bajos. El nombre de usuario tiene que contener entre 4 y 8 de los caracteres permitidos.");
   }
 
   if (empty($password)) {
@@ -29,18 +31,6 @@
     persistUser($username, $password, $connection);
     echo "Usuario registrado exitosamente!";
     mysqli_close($connection);
-  }
-
-  /**
-  * Establece una conexion con una base de datos MySQL
-  */
-  function getDataBaseConnection() {
-    $server_name = "localhost";
-    $db_username = "root";
-    $db_password = "";
-    $db_name = "user_db";
-
-    return mysqli_connect($server_name, $db_username, $db_password, $db_name);
   }
 
   /**
