@@ -33,7 +33,7 @@
       exit("Contraseña incorrecta.");
     }
 
-    echo "Inicio de sesion satisfactorio.";
+    echo "Autenticacion satisfactoria.";
     mysqli_close($connection);
   }
 
@@ -55,7 +55,7 @@
     /* Si la cantidad de filas devuelta por la consulta es igual cero, la cuenta de usuario
     no esta registrada en la base de datos subyacente */
     if (mysqli_num_rows($query_results) == 0) {
-      exit("Usuario no registrado.");
+      exit("Nombre de usuario o contraseña incorrectos.");
     }
 
     $table_record = mysqli_fetch_array($query_results);
